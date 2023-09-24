@@ -1,7 +1,6 @@
 import hashlib
 import time
-import hashlib
-import hashlib
+
 
 class MerkleTree:
     def __init__(self, forMerkle_hash):
