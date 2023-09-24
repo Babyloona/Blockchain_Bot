@@ -39,7 +39,6 @@ async def callback_function(call: types.CallbackQuery , state:FSMContext):
         except:
          pass
         if call.data.startswith("createNewBlock"):
-        #    await bot.send_message(call.message.chat.id, text='Wait pls I am creating')           
            if my_blockchain.add_block("General Block") :
               await bot.send_message(call.message.chat.id, text='Your block uspeshno created!')
            else:
@@ -56,7 +55,7 @@ async def callback_function(call: types.CallbackQuery , state:FSMContext):
              markup.add( btn2,btn3,btn4)
            await bot.send_message(call.message.chat.id, text='What you want?', reply_markup=markup)
               
-        #    тут функцияны шакырамз
+        
         elif call.data.startswith("addTransaction"):
          markup = types.InlineKeyboardMarkup(row_width = 1)
          btn1 = types.InlineKeyboardButton("Ayazhan", callback_data= f"recipient/Ayazhan")
@@ -75,7 +74,7 @@ async def callback_function(call: types.CallbackQuery , state:FSMContext):
             markup.add(btn3, btn1)
             await bot.send_message(call.message.chat.id, text='Meruert, choose recipient:', reply_markup=markup)
          
-        #    тут функция 
+        
         elif call.data.startswith("showBlockchain"):
             for block in my_blockchain.chain:
                 msg = f"Block - Index #{block.index}\n"
@@ -94,7 +93,7 @@ async def callback_function(call: types.CallbackQuery , state:FSMContext):
                     msg += f"Merkle Hash: {block.merkle_hash}\n"
                 else:
                     msg += f"Merkle Hash: {block.merkle_hash[0]}\n"
-                # msg +=f"Merkle Hash: {block.merkle_hash.to_string()}\n"
+                
                 await bot.send_message(call.message.chat.id, text=msg)
             markup = types.InlineKeyboardMarkup(row_width = 1)
             btn1 = types.InlineKeyboardButton("Make new block", callback_data= f"createNewBlock")
